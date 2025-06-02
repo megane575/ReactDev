@@ -1,9 +1,21 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import './App.css';
+import { useState } from "react";
 
-
+const initTodo = [
+  {
+    id:1,
+    title:"Todo1",
+  },
+  {
+    id:2,
+    title:"Todo2",
+  },
+]
 export const App = () => {
+    const [ todoList, setTodoList] = useState(initTodo);
+    console.log(todoList)
     return (
         <div className="container">
             <h1 className="title">Todo List</h1>
@@ -19,14 +31,13 @@ export const App = () => {
             {/*Todo一覧領域*/} 
             <section className="common-area"> 
               <ul className="todo-list">
-                <li className="todo">
-                  <span className="todo-task">Todo1</span>
+                {todoList.map((todo) => {
+                  return (
+                  <li className="todo" key={todo.id}>
+                  <span className="todo-task">{todo.title}</span>
                   <FontAwesomeIcon className="far" icon={faTrash} />
-                </li>
-                <li className="todo">
-                  <span className="todo-task">Todo2</span>
-                  <FontAwesomeIcon className="far" icon={faTrash} />
-                </li>
+                  </li>)
+                })}
               </ul>
             </section>
         </div>
