@@ -15,14 +15,32 @@ const initTodo = [
 ]
 export const App = () => {
     const [ todoList, setTodoList] = useState(initTodo);
-    console.log(todoList)
+    const [ addInputValue, setAddInputValue] = useState("")
+    const [ uniqueId, setUiqueId ] = useState(initTodo.length)
+    const onChangeAddInputValue = (event) => {
+      setAddInputValue(event.target.value)
+    }
+    const handleAddTodo = (event) => {
+      if (event.key === "Enter" && addInputValue !==""){
+        
+      }
+      
+    }
+    
     return (
         <div className="container">
             <h1 className="title">Todo List</h1>
             {/*Todo追加領域*/} 
             <section className="common-area">
               <h2 className="add-title">ADD Todo</h2>
-              <input className='new-todo' type='text' placeholder='New Todo'></input>
+              <input 
+              className='new-todo' 
+              type='text' 
+              value={addInputValue} 
+              onChange={onChangeAddInputValue}
+              onKeyDown={handleAddTodo}
+              placeholder='New Todo'>
+              </input>
             </section>
              {/*Todo検索フォーム領域*/}
             <section className="common-area"> 
