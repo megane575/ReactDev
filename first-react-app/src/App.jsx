@@ -2,21 +2,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import './App.css';
 import { useState } from "react";
+import { INIT_TODO_LIST, INIT_UNIQUE_ID } from "./constants/data";
 
-const initTodo = [
-  {
-    id:1,
-    title:"Todo1",
-  },
-  {
-    id:2,
-    title:"Todo2",
-  },
-]
 export const App = () => {
-    const [ todoList, setTodoList] = useState(initTodo);
+    const [ todoList, setTodoList] = useState(INIT_TODO_LIST);
     const [ addInputValue, setAddInputValue] = useState("")
-    const [ uniqueId, setUiqueId ] = useState(initTodo.length)
+    const [ uniqueId, setUiqueId ] = useState(INIT_UNIQUE_ID)
     const onChangeAddInputValue = (event) => {
       setAddInputValue(event.target.value)
     }
