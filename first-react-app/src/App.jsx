@@ -30,11 +30,18 @@ export const App = () => {
           title: addInputValue,
         }
         ];
+        console.log(newUniqueId)
         setTodoList(newTodoList);
         setUiqueId(newUniqueId);
         setAddInputValue("");
       }
-      
+    }
+
+    const handleDeleteTodo = (targetId) => {
+      const newTodoList = todoList.filter((todo) =>{
+        return todo.id !== targetId;
+      })
+      setTodoList(newTodoList)
     }
     
     return (
@@ -63,7 +70,8 @@ export const App = () => {
                   return (
                   <li className="todo" key={todo.id}>
                   <span className="todo-task">{todo.title}</span>
-                  <FontAwesomeIcon className="far" icon={faTrash} />
+                  <FontAwesomeIcon className="far" icon={faTrash} 
+                  onClick={() => handleDeleteTodo(todo.id)}/>
                   </li>)
                 })}
               </ul>
