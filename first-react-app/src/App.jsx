@@ -3,6 +3,7 @@ import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import './App.css';
 import { useState } from "react";
 import { INIT_TODO_LIST, INIT_UNIQUE_ID } from "./constants/data";
+import { AddTodo } from "./components/AddTodo";
 
 export const App = () => {
     const [ todoList, setTodoList] = useState(INIT_TODO_LIST);
@@ -42,15 +43,11 @@ export const App = () => {
             <h1 className="title">Todo List</h1>
             {/*Todo追加領域*/} 
             <section className="common-area">
-              <h2 className="add-title">ADD Todo</h2>
-              <input 
-              className='new-todo' 
-              type='text' 
-              value={addInputValue} 
-              onChange={onChangeAddInputValue}
-              onKeyDown={handleAddTodo}
-              placeholder='New Todo'>
-              </input>
+              <AddTodo
+              addInputValue={addInputValue}
+              onChangeAddInputValue={onChangeAddInputValue}
+              handleAddTodo={handleAddTodo}
+              />
             </section>
              {/*Todo検索フォーム領域*/}
             <section className="common-area"> 
