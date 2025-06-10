@@ -37,11 +37,13 @@ export const App = () => {
       }
     }
 
-    const handleDeleteTodo = (targetId) => {
-      const newTodoList = todoList.filter((todo) =>{
-        return todo.id !== targetId;
-      })
-      setTodoList(newTodoList)
+    const handleDeleteTodo = (targetId, targetTitle) => {
+      if (window.confirm(`${targetTitle}のTodoを削除しますか？`)){
+        const newTodoList = todoList.filter((todo) =>{
+          return todo.id !== targetId;
+        });  
+        setTodoList(newTodoList)
+      }
     }
     
     return (
@@ -71,7 +73,7 @@ export const App = () => {
                   <li className="todo" key={todo.id}>
                   <span className="todo-task">{todo.title}</span>
                   <FontAwesomeIcon className="far" icon={faTrash} 
-                  onClick={() => handleDeleteTodo(todo.id)}/>
+                  onClick={() => handleDeleteTodo(todo.id,todo.title)}/>
                   </li>)
                 })}
               </ul>
