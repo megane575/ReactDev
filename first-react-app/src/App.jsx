@@ -22,7 +22,17 @@ export const App = () => {
     }
     const handleAddTodo = (event) => {
       if (event.key === "Enter" && addInputValue !==""){
-        
+        const newUniqueId = uniqueId + 1
+        const newTodoList = [
+          ...todoList,
+        {
+          id:uniqueId + 1,
+          title: addInputValue,
+        }
+        ];
+        setTodoList(newTodoList);
+        setUiqueId(newUniqueId);
+        setAddInputValue("");
       }
       
     }
