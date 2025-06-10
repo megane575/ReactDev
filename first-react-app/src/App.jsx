@@ -1,9 +1,9 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import './App.css';
 import { useState } from "react";
 import { INIT_TODO_LIST, INIT_UNIQUE_ID } from "./constants/data";
 import { AddTodo } from "./components/AddTodo";
+import { TodoList } from "./components/TodoList";
 
 export const App = () => {
     const [ todoList, setTodoList] = useState(INIT_TODO_LIST);
@@ -22,7 +22,6 @@ export const App = () => {
           title: addInputValue,
         }
         ];
-        console.log(newUniqueId)
         setTodoList(newTodoList);
         setUiqueId(newUniqueId);
         setAddInputValue("");
@@ -55,16 +54,10 @@ export const App = () => {
             </section>
             {/*Todo一覧領域*/} 
             <section className="common-area"> 
-              <ul className="todo-list">
-                {todoList.map((todo) => {
-                  return (
-                  <li className="todo" key={todo.id}>
-                  <span className="todo-task">{todo.title}</span>
-                  <FontAwesomeIcon className="far" icon={faTrash} 
-                  onClick={() => handleDeleteTodo(todo.id,todo.title)}/>
-                  </li>)
-                })}
-              </ul>
+              < TodoList
+                todoList={todoList}
+                handleDeleteTodo={handleDeleteTodo}
+              />
             </section>
         </div>
     );
