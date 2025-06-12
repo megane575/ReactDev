@@ -1,6 +1,7 @@
 /**AddTodo */
 
 import React from "react";
+import "./style.css";
 
 export const AddTodo = (props) => {
     const {addInputValue,onChangeAddInputValue,handleAddTodo} = props

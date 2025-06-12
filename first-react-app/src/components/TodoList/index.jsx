@@ -2,6 +2,7 @@
 
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import "./style.css"
 
 export const TodoList = (props) =>{
     const {todoList,handleDeleteTodo} = props
