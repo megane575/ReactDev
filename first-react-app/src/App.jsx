@@ -1,4 +1,3 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import './App.css';
 import { useState } from "react";
 import { INIT_TODO_LIST, INIT_UNIQUE_ID } from "./constants/data";
