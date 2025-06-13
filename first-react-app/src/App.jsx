@@ -6,8 +6,10 @@ import { TodoList } from "./components/TodoList";
 
 export const App = () => {
     const [ todoList, setTodoList] = useState(INIT_TODO_LIST);
-    const [ addInputValue, setAddInputValue] = useState("")
-    const [ uniqueId, setUiqueId ] = useState(INIT_UNIQUE_ID)
+    const [ addInputValue, setAddInputValue] = useState("");
+    const [ uniqueId, setUiqueId ] = useState(INIT_UNIQUE_ID);
+    const [ searchKeyword, setSearchKeyword ] = useState("");
+
     const onChangeAddInputValue = (event) => {
       setAddInputValue(event.target.value)
     }
@@ -35,7 +37,15 @@ export const App = () => {
         setTodoList(newTodoList)
       }
     }
-    
+
+    const handleChangeSearchKeyword =(event) =>{
+      setSearchKeyword(event.target.value);
+    };
+
+    const filteredTodoList = todoList.filter((todo)=>
+      todo.title.toLowerCase().includes(searchKeyword.toLowerCase())
+    );
+
     return (
         <div className="container">
             <h1 className="title">Todo List</h1>
@@ -49,14 +59,13 @@ export const App = () => {
             </section>
              {/*Todo検索フォーム領域*/}
             <section className="common-area"> 
-              <input className='search-keyword' type='text' placeholder='Search Keyword'></input>
-            </section>
-            {/*Todo一覧領域*/} 
-            <section className="common-area"> 
-              < TodoList
-                todoList={todoList}
+              <input className='search-keyword' type='text' placeholder='Search Keyword'
+              onChange={handleChangeSearchKeyword}
+              ></input>
+            < TodoList
+                todoList={filteredTodoList}
                 handleDeleteTodo={handleDeleteTodo}
-              />
+              /> 
             </section>
         </div>
     );
