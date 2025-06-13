@@ -42,6 +42,12 @@ export const App = () => {
       setSearchKeyword(event.target.value);
     };
 
+    const handleKeyDownSearch = (event) => {
+      if (event.key === "Enter"){
+        setSearchKeyword("");
+      }
+    };
+
     const filteredTodoList = todoList.filter((todo)=>
       todo.title.toLowerCase().includes(searchKeyword.toLowerCase())
     );
@@ -59,8 +65,13 @@ export const App = () => {
             </section>
              {/*Todo検索フォーム領域*/}
             <section className="common-area"> 
-              <input className='search-keyword' type='text' placeholder='Search Keyword'
+              <input 
+              className='search-keyword' 
+              type='text' 
+              placeholder='Search Keyword'
+              value = {searchKeyword}
               onChange={handleChangeSearchKeyword}
+              onKeyDown={handleKeyDownSearch}
               ></input>
             < TodoList
                 todoList={filteredTodoList}
