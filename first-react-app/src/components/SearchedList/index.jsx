@@ -1,4 +1,5 @@
-
+/**SearchWordTodo */
+import "./style.css";
 
 export const SearchWordTodo = (props) => {
     const {searchKeyword, handleChangeSearchKeyword, handleKeyDownSearch}= props
