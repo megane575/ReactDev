@@ -3,6 +3,7 @@ import { useState } from "react";
 import { INIT_TODO_LIST, INIT_UNIQUE_ID } from "./constants/data";
 import { AddTodo } from "./components/AddTodo";
 import { TodoList } from "./components/TodoList";
+import { SearchWordTodo } from "./components/SearchedList"
 
 export const App = () => {
     const [ todoList, setTodoList] = useState(INIT_TODO_LIST);
@@ -65,14 +66,12 @@ export const App = () => {
             </section>
              {/*Todo検索フォーム領域*/}
             <section className="common-area"> 
-              <input 
-              className='search-keyword' 
-              type='text' 
-              placeholder='Search Keyword'
-              value = {searchKeyword}
-              onChange={handleChangeSearchKeyword}
-              onKeyDown={handleKeyDownSearch}
-              ></input>
+            < SearchWordTodo
+              searchKeyword={searchKeyword}
+              handleChangeSearchKeyword={handleChangeSearchKeyword}
+              handleKeyDownSearch={handleKeyDownSearch}
+            />
+            {/*Todo一覧表示領域*/}
             < TodoList
                 todoList={filteredTodoList}
                 handleDeleteTodo={handleDeleteTodo}
