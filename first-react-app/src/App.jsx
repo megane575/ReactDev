@@ -1,35 +1,35 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import './App.css';
+import { useApp } from "./hooks/useApp";
+import { AddTodo } from "./components/AddTodo";
+import { TodoList } from "./components/TodoList";
+import { SearchWordTodo } from "./components/SearchedList"
 
-function App() {
-  const [count, setCount] = useState(0)
-
-  return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
-
-export default App
+export const App = () => {
+    const [states,actions] = useApp();
+    return (
+        <div className="container">
+            <h1 className="title">Todo List</h1>
+            {/*Todo追加領域*/} 
+            <section className="common-area">
+              <AddTodo
+              addInputValue={states.addInputValue}
+              onChangeAddInputValue={actions.onChangeAddInputValue}
+              handleAddTodo={actions.handleAddTodo}
+              />
+            </section>
+             {/*Todo検索フォーム領域*/}
+            <section className="common-area"> 
+            < SearchWordTodo
+              searchKeyword={states.searchKeyword}
+              handleChangeSearchKeyword={actions.handleChangeSearchKeyword}
+              handleKeyDownSearch={actions.handleKeyDownSearch}
+            />
+            {/*Todo一覧表示領域*/}
+            < TodoList
+                todoList={actions.filteredTodoList}
+                handleDeleteTodo={actions.handleDeleteTodo}
+              /> 
+            </section>
+        </div>
+    );
+};
