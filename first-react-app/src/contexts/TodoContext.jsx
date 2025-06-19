@@ -20,16 +20,16 @@ export const TodoProvider = ({children}) => {
 
     return (
         <TodoContext.Provider 
-        value={{
-            todoList,
-            addInputValue,
-            searchKeyword,
-            onChangeAddInputValue,
-            handleAddTodo, 
-            handleDeleteTodo,
-            handleChangeSearchKeyword,
-            handleKeyDownSearch,
-            filteredTodoList,
+            value={{
+                todoList,
+                addInputValue,
+                searchKeyword,
+                onChangeAddInputValue,
+                handleAddTodo, 
+                handleDeleteTodo,
+                handleChangeSearchKeyword,
+                handleKeyDownSearch,
+                filteredTodoList,
             }}
         >
             {children}
