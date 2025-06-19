@@ -1,9 +1,11 @@
 import { createContext } from "react";
 import { useApp } from "../hooks/useApp"
 
-export const TodoContext = createContext();
+const TodoContext = createContext();
 
-export const TodoProvider = () => {
+export {TodoContext}
+
+export const TodoProvider = ({children}) => {
     const {
         todoList,
         addInputValue,
@@ -30,7 +32,7 @@ export const TodoProvider = () => {
             filteredTodoList,
             }}
         >
-
+            {children}
         </TodoContext.Provider>
     );
 };
