@@ -4,7 +4,7 @@ import { INIT_TODO_LIST, INIT_UNIQUE_ID } from "../constants/data";
 export const useApp = () => {
   const [todoList, setTodoList] = useState(INIT_TODO_LIST);
   const [addInputValue, setAddInputValue] = useState("");
-  const [uniqueId, setUiqueId] = useState(INIT_UNIQUE_ID);
+  const [uniqueId, setUniqueId] = useState(INIT_UNIQUE_ID);
   const [searchKeyword, setSearchKeyword] = useState("");
 
   const onChangeAddInputValue = (event) => {
@@ -21,7 +21,7 @@ export const useApp = () => {
         },
       ];
       setTodoList(newTodoList);
-      setUiqueId(newUniqueId);
+      setUniqueId(newUniqueId);
       setAddInputValue("");
     }
   };
@@ -48,19 +48,15 @@ export const useApp = () => {
   const filteredTodoList = todoList.filter((todo) =>
     todo.title.toLowerCase().includes(searchKeyword.toLowerCase())
   );
-  return [
-    {
-      todoList,
-      addInputValue,
-      searchKeyword,
-    },
-    {
-      onChangeAddInputValue,
-      handleAddTodo,
-      handleDeleteTodo,
-      handleChangeSearchKeyword,
-      handleKeyDownSearch,
-      filteredTodoList,
-    },
-  ];
+  return {
+    todoList,
+    addInputValue,
+    searchKeyword,
+    onChangeAddInputValue,
+    handleAddTodo,
+    handleDeleteTodo,
+    handleChangeSearchKeyword,
+    handleKeyDownSearch,
+    filteredTodoList,
+  };
 };
