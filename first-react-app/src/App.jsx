@@ -3,7 +3,7 @@ import { TodoTemplate } from './components/templates/TodoTemplate';
 
 export const App = () => {
     return(
-      <TodoProvider>
+    <TodoProvider>
       <TodoTemplate/>
     </TodoProvider>
     )
