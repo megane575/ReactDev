@@ -1,5 +1,11 @@
 import { BrowserRouter, Routes, Route} from 'react-router';
 import { NAVIGATION_LIST } from '../router'
+import { 
+    TodoCreatePage,
+    TodoDetailPage,
+    TodoEditPage,
+    TodoListPage,
+} from '../pages';
 
 export const Router = () => {
     return(
