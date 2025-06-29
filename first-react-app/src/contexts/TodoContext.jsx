@@ -1,9 +1,9 @@
 import { createContext } from "react";
-import { useApp } from "../hooks/useApp"
+import { useApp } from "../hooks/useApp.js"
 
-const TodoContext = createContext();
+const TodoContext = createContext({});
 
-export {TodoContext}
+export {TodoContext};
 
 export const TodoProvider = ({children}) => {
   const { originTodoList, addTodo, updateTodo, deleteTodo } = useApp();

@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router';
+import { NavLink } from 'react-router-dom';
 import './style.css'
 
 export const NavigationLink = ({linkPath, title}) => (
