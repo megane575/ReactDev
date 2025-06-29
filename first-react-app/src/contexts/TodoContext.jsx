@@ -6,34 +6,18 @@ const TodoContext = createContext();
 export {TodoContext}
 
 export const TodoProvider = ({children}) => {
-    const {
-        todoList,
-        addInputValue,
-        searchKeyword,
-        onChangeAddInputValue,
-        handleAddTodo, 
-        handleDeleteTodo,
-        handleChangeSearchKeyword,
-        handleKeyDownSearch,
-        filteredTodoList,
-    } = useApp();
+  const { originTodoList, addTodo, updateTodo, deleteTodo } = useApp();
 
-    return (
-        <TodoContext.Provider 
-        value={{
-            todoList,
-            addInputValue,
-            searchKeyword,
-            onChangeAddInputValue,
-            handleAddTodo, 
-            handleDeleteTodo,
-            handleChangeSearchKeyword,
-            handleKeyDownSearch,
-            filteredTodoList,
-        }}
-        >
-            {children}
-        </TodoContext.Provider>
-    );
+  return (
+    <TodoContext.Provider
+      value={{
+        originTodoList,
+        addTodo,
+        updateTodo,
+        deleteTodo,
+      }}
+    >
+      {children}
+    </TodoContext.Provider>
+  );
 };
- 
