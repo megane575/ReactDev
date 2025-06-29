@@ -1,9 +1,11 @@
 import { useNavigate } from "react-router";
 import { useState, useCallback } from "react";
 import { NAVIGATION_PATH } from "../../../constants/navigation";
+import { useTodoContext } from "../../../hooks/useTodoContext";
 
-export const useTodoCreateTemplate = (addTodo) => {
+export const useTodoCreateTemplate = () => {
   const navigate = useNavigate();
+  const { addTodo } = useTodoContext();
 
   const [inputTitle, setInputTitle] = useState("");
   const [inputContent, setInputContent] = useState("");
