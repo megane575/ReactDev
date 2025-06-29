@@ -1,62 +1,64 @@
-import { useState } from "react";
-import { INIT_TODO_LIST, INIT_UNIQUE_ID } from "../constants/data";
+import { useState, useCallback } from "react";
+import { INIT_TODO_LIST, INIT_UNIQUE_ID } from "../constants/data.js";
 
 export const useApp = () => {
-  const [todoList, setTodoList] = useState(INIT_TODO_LIST);
-  const [addInputValue, setAddInputValue] = useState("");
-  const [uniqueId, setUniqueId] = useState(INIT_UNIQUE_ID);
-  const [searchKeyword, setSearchKeyword] = useState("");
+  const [originTodoList, setOriginTodoList] = useState(INIT_TODO_LIST);
 
-  const onChangeAddInputValue = (event) => {
-    setAddInputValue(event.target.value);
-  };
-  const handleAddTodo = (event) => {
-    if (event.key === "Enter" && addInputValue !== "") {
-      const newUniqueId = uniqueId + 1;
-      const newTodoList = [
-        ...todoList,
+  const [uniqueId, setUniqueId] = useState(INIT_UNIQUE_ID);
+
+  const addTodo = useCallback(
+    (title, content) => {
+      const nextUniqueId = uniqueId + 1;
+      const newTodo = [
+        ...originTodoList,
         {
-          id: uniqueId + 1,
-          title: addInputValue,
+          id: nextUniqueId,
+          title: title,
+          content: content,
         },
       ];
-      setTodoList(newTodoList);
-      setUniqueId(newUniqueId);
-      setAddInputValue("");
-    }
-  };
 
-  const handleDeleteTodo = (targetId, targetTitle) => {
-    if (window.confirm(`${targetTitle}のTodoを削除しますか？`)) {
-      const newTodoList = todoList.filter((todo) => {
-        return todo.id !== targetId;
-      });
-      setTodoList(newTodoList);
-    }
-  };
-
-  const handleChangeSearchKeyword = (event) => {
-    setSearchKeyword(event.target.value);
-  };
-
-  const handleKeyDownSearch = (event) => {
-    if (event.key === "Enter") {
-      setSearchKeyword("");
-    }
-  };
-
-  const filteredTodoList = todoList.filter((todo) =>
-    todo.title.toLowerCase().includes(searchKeyword.toLowerCase())
+      setOriginTodoList(newTodo);
+      setUniqueId(nextUniqueId);
+    },
+    [originTodoList, uniqueId]
   );
+
+  const updateTodo = useCallback(
+    (id, title, content) => {
+      const updatedTodoList = originTodoList.map((todo) => {
+        if (id === todo.id) {
+          return {
+            id: todo.id,
+            title: title,
+            content: content,
+          };
+        }
+
+        return todo;
+      });
+      setOriginTodoList(updatedTodoList);
+    },
+    [originTodoList]
+  );
+
+  const deleteTodo = useCallback(
+    (targetId, targetTitle) => {
+      if (window.confirm(`「${targetTitle}」のtodoを削除しますか？`)) {
+        const newTodoList = originTodoList.filter(
+          (todo) => todo.id !== targetId
+        );
+
+        setOriginTodoList(newTodoList);
+      }
+    },
+    [originTodoList]
+  );
+
   return {
-    todoList,
-    addInputValue,
-    searchKeyword,
-    onChangeAddInputValue,
-    handleAddTodo,
-    handleDeleteTodo,
-    handleChangeSearchKeyword,
-    handleKeyDownSearch,
-    filteredTodoList,
+    originTodoList,
+    addTodo,
+    updateTodo,
+    deleteTodo,
   };
 };
