@@ -1,4 +1,4 @@
-import { Navigation } from '../../../molecules/Navigation';
+import { Navigation } from '../../molecules/Navigation';
 import './style.css';
 
 export const BaseLayout = ({children,title}) => (

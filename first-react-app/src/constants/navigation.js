@@ -1,4 +1,4 @@
-export const BASE_PATH = "ReactDev";
+export const BASE_PATH = "/";
 
 export const NAVIGATION_LIST = {
   TOP: `${BASE_PATH}/`,

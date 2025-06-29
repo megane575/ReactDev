@@ -1,10 +1,11 @@
-import { useTodoContent } from '../../../hooks/useTodoContext.js';
-import { useTodoCreateTemplate } from './useTopCreateTemplate.js';
+import { useTodoContext } from '../../../hooks/useTodoContext.js';
+import { useTodoCreateTemplate } from './useTodoCreateTemplate.js';
 import { BaseLayout } from '../../organisms';
 import { CommonButton, InputForm, TextArea } from '../../atoms'
+import './style.css';
 
 export const TodoCreateTemplate = () => {
-    const { addTodo } =useTodoContent();
+    const { addTodo } =useTodoContext();
     const {
         inputTitle,
         inputContent,
@@ -18,16 +19,16 @@ export const TodoCreateTemplate = () => {
         <form className="container" onSubmit={handleCreateTodo} >
             <div div className="area">
                 <InputForm
-                value={inputTitle}
-                placeholder={"Title"}
-                onChange={handleChangeTitle}
+                    value={inputTitle}
+                    placeholder={"Title"}
+                    onChange={handleChangeTitle}
                 />
             </div>
             <div className="area">
                 <TextArea
-                value={inputContent}
-                placeholder={"Content"}
-                onChange={handleChangeContent}
+                    value={inputContent}
+                    placeholder={"Content"}
+                    onChange={handleChangeContent}
                 />
             </div>
             <div className="area">
@@ -35,5 +36,5 @@ export const TodoCreateTemplate = () => {
             </div>
         </form>
     </BaseLayout>
-        )
+    )
 }

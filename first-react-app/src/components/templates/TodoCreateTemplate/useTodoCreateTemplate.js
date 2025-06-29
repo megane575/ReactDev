@@ -2,7 +2,7 @@ import { useNavigate } from "react-router";
 import { useState, useCallback } from "react";
 import { NAVIGATION_PATH } from "../../../constants/navigation";
 
-export const useTopCreateTemplate = (addTodo) => {
+export const useTodoCreateTemplate = (addTodo) => {
   const navigate = useNavigate();
 
   const [inputTitle, setInputTitle] = useState("");
