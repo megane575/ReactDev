@@ -1,0 +1,47 @@
+version: "3.9"
+
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: ./backend/Dockerfile.dev
+    container_name: backend
+    ports:
+      - "4000:4000"
+    depends_on:
+      - db
+    environment:
+      - POSTGRES_HOST=db
+      - POSTGRES_PORT=5432
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=pass
+      - POSTGRES_DB=todo_db
+      - "TZ= Asia/Tokyo"
+    volumes:
+      - ./backend:/app
+      - /etc/localtime:/etc/localtime:ro
+    networks:
+      - todo-net
+
+  db:
+    image: postgres:17.2
+    container_name: db
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=pass
+      - POSTGRES_DB=todo_db
+      - "TZ= Asia/Tokyo"
+    volumes:
+      - ReactDev:/var/lib/postgresql/data:delegated
+      - ./database/postgres:/docker-entrypoint-initdb.d
+
+    networks:
+      - todo-net
+
+volumes:
+  ReactDev:
+
+networks:
+  todo-net:
