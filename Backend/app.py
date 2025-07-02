@@ -1,7 +1,7 @@
 from http.server import BaseHTTPRequestHandler, HTTPServer
 import json
 import psycopg2
-from urllib.parse import urlparse
+from urllib.parse import urlparse, parse_qs
 
 DB_CONFIG = {
     "host": "db",
@@ -20,18 +20,25 @@ def fetch_todos():
     return [{"id": r[0], "title": r[1], "content": r[2]} for r in rows]
 
 class TodoHandler(BaseHTTPRequestHandler):
+    def _set_headers(self):
+        self.send_response(200)
+        self.send_header("Content-type", "application/json")
+        self.send_header("Access-Control-Allow-Origin", "*")
+        self.end_headers()
+
     def do_GET(self):
-        if self.path == "/api/todos":
+        if self.path == "/todos":
+            self._set_headers()
             todos = fetch_todos()
-            self.send_response(200)
-            self.send_header("Content-type", "application/json")
-            self.end_headers()
-            self.wfile.write(json.dumps(todos).encode())
+            self.wfile.write(json.dumps(todos).encode("utf-8"))
         else:
-            self.send_response(404)
-            self.end_headers()
+            self.send_error(404)
+
+def run(server_class=HTTPServer, handler_class=TodoHandler):
+    server_address = ('', 8000)
+    httpd = server_class(server_address, handler_class)
+    print("Starting server at http://localhost:8000")
+    httpd.serve_forever()
 
 if __name__ == "__main__":
-    server = HTTPServer(('', 4000), TodoHandler)
-    print("Server running on port 4000...")
-    server.serve_forever()
+    run()
