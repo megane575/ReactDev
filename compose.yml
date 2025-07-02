@@ -3,11 +3,11 @@ version: "3.9"
 services:
   backend:
     build:
-      context: .
-      dockerfile: ./backend/Dockerfile.dev
+      context: ./Backend
+      dockerfile: Dockerfile.dev
     container_name: backend
     ports:
-      - "4000:4000"
+      - "8000:8000"
     depends_on:
       - db
     environment:
@@ -18,14 +18,14 @@ services:
       - POSTGRES_DB=todo_db
       - "TZ= Asia/Tokyo"
     volumes:
-      - ./backend:/app
+      - ./Backend:/app
       - /etc/localtime:/etc/localtime:ro
     networks:
       - todo-net
 
   db:
     image: postgres:17.2
-    container_name: db
+    container_name: localhost
     ports:
       - "5432:5432"
     environment:
@@ -35,7 +35,7 @@ services:
       - "TZ= Asia/Tokyo"
     volumes:
       - ReactDev:/var/lib/postgresql/data:delegated
-      - ./database/postgres:/docker-entrypoint-initdb.d
+      - ./Backend/Database/postgres:/docker-entrypoint-initdb.d
 
     networks:
       - todo-net
