@@ -16,3 +16,11 @@ export const createTodo = async (todo) => {
   if (!response.ok) throw new Error("Failed to create todo");
   return response.json();
 };
+
+export const deleteTodo = async (id) => {
+  const response = await fetch(`${API_BASE}/todos/${id}`, {
+    method: "DELETE",
+  });
+  if (!response.ok) throw new Error("Failed to delete todo");
+  return response.json();
+};
