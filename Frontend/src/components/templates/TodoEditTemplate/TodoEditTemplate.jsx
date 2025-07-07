@@ -1,7 +1,7 @@
 import { useTodoEditTemplate } from "./useTodoEditTemplate.js";
 import { useTodoContext } from "../../../hooks/useTodoContext.js";
-import { BaseLayout } from "../../organisms";
-import { CommonButton, TextArea, InputForm } from "../../atoms";
+import { BaseLayout } from "../../organisms/index.js";
+import { CommonButton, TextArea, InputForm } from "../../atoms/index.js";
 import './style.css';
 
 export const TodoEditTemplate = () => {

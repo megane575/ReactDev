@@ -1,7 +1,7 @@
 import { useParams } from "react-router";
 import { useTodoContext } from "../../../hooks/useTodoContext.js";
 import { BaseLayout } from "../../organisms/index.js";
-import { InputForm,TextArea } from "../../atoms";
+import { InputForm,TextArea } from "../../atoms/index.js";
 import './style.css';
 
 export const TodoDetailTemplate = () => {

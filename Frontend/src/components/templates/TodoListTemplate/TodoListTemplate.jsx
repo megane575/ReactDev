@@ -1,5 +1,5 @@
-import { BaseLayout, TodoList } from "../../organisms";
-import { InputForm } from "../../atoms";
+import { BaseLayout, TodoList } from "../../organisms/index.js";
+import { InputForm } from "../../atoms/index.js";
 import { useTodoContext } from "../../../hooks/useTodoContext.js";
 import { useTodoListTemplate } from "./useTodoListTemplate.js";
 import './style.css';
